@@ -58,3 +58,14 @@ for (var i = 0; i < topItalianPresidents.length; i++){
 }
 	console.log("My " + (i+1) + suffix + " Italian President is " + topItalianPresidents[i]);
 }
+
+//else if work
+var year = prompt("Pick a year!");
+var currentDate = new Date();
+if (year == currentDate.getFullYear()) {
+	console.log("I'm in the present!");
+	} else if (year < currentDate){
+		console.log("Whoa! A blast from the past!");
+	}	else{
+		console.log("Greetings from the future!");
+	}
