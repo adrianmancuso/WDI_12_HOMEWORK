@@ -8,17 +8,32 @@ var aDeliciousSpaghettiBolognese = {
 
 console.log("Baddabing! So ya wanna cook a delicious " + aDeliciousSpaghettiBolognese.title + "?");
 console.log("Ya gotta know this serves " + aDeliciousSpaghettiBolognese.servings + " delicious dinners. Fuggettaboutit!");
-console.log("Gabbagool! You gotta buy: " + aDeliciousSpaghettiBolognese.ingredients);
+console.log("Gabbagool! You gotta buy: " + aDeliciousSpaghettiBolognese.ingredients.join('\n'));
+
 
 
 //the reading list
-var readingList = [{bookAuthor: 'Marijn Haverbeke', bookName: 'Eloquent Javascript', alreadyRead: false},
-	{bookAuthor: 'Mooki Gottabeak', bookName: 'Javveling Arbascript', alreadyRead: false},
-	{bookAuthor: 'Marcin Honkleberry', bookName: 'Rambling Navascript', alreadyRead: true}
- ];
+var readingList = [{
+	bookAuthor: 'Marijn Haverbeke', 
+	bookName: 'Eloquent Javascript', 
+	alreadyRead: false
+},
+
+	{
+		bookAuthor: 'Mooki Gottabeak', 
+		bookName: 'Javveling Arbascript', 
+		alreadyRead: false
+	},
+
+	{
+		bookAuthor: 'Marcin Honkleberry', 
+		bookName: 'Rambling Navascript', 
+		alreadyRead: true
+	}];
 
 for (var i = 0; i < readingList.length; i++){
-	if (readingList[i].alreadyRead == true){
+	//var currentBook = readingList[i];  -- optional for readability
+	if (readingList[i].alreadyRead){
 		console.log("You already read " + readingList[i].bookName + " by " + readingList[i].bookAuthor + ".");
 	} else{
 		console.log("You still need to read " + readingList[i].bookName + " by " + readingList[i].bookAuthor + ".");
@@ -48,11 +63,13 @@ var theThing = {
 	actors: ['Kurt Russell', 'Wilford Brimley', 'T.K Carter', 'Charles Hallahan']
 }
 
-function lmdb (movie) {
-	console.log(movie.title + ' directed by ' + movie.director + ' lasts for ' + movie.duration + ' minutes and stars ' + movie.actors)
+function describeMovie (movie) {
+	return movie.title + ' directed by ' + movie.director + ' lasts for ' + movie.duration + ' minutes and stars ' + movie.actors
 }
 
-lmdb(theThing);
-lmdb(deadRingers);
-lmdb(playtime);
 
+console.log(describeMovie(theThing));
+console.log(describeMovie(deadRingers));
+console.log(describeMovie(playtime));
+
+//changed function name to be more descriptive
