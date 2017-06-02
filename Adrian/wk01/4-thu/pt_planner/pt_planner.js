@@ -1,65 +1,76 @@
-
 var alamein = {
-		lineName: "Alamein",
-		stations: 	["Flinders Street", "Richmond", "East Richmond", "Burnley", "Hawthorn", "Glenferrie"]
-	};
+    lineName: "Alamein",
+    stations: ["Flinders Street", "Richmond", "East Richmond", "Burnley", "Hawthorn", "Glenferrie"]
+};
 
 var sandringham = {
-		lineName: "Sandringham",
-		stations: ["Southern Cross", "Richmond", "South Yarra", "Prahan", "Windsor"]
-	};
+    lineName: "Sandringham",
+    stations: ["Southern Cross", "Richmond", "South Yarra", "Prahan", "Windsor"]
+};
 
 var glenWaverly = {
-		lineName: "Glen Waverly",
-		stations: ["Flagstaff", "Melbourne Central", "Parliament", "Richmond", "Kooyong", "Tooronga"]
-	};
+    lineName: "Glen Waverly",
+    stations: ["Flagstaff", "Melbourne Central", "Parliament", "Richmond", "Kooyong", "Tooronga"]
+};
 
 var trainLines = [alamein, sandringham, glenWaverly];
 
-var makeRoute = function (lineIndex, indexOne, indexTwo){
-	return lineIndex.stations.slice(indexOne, indexTwo);
+var makeRoute = function(lineIndex, indexOne, indexTwo) {
+    //checking
+    if (indexOne > indexTwo) {
+        var temp = indexOne;
+        indexOne = indexTwo;
+        indexTwo = temp;
+
+        return lineIndex.stations.slice(indexOne, indexTwo + 1).reverse();
+    } else {
+        return lineIndex.stations.slice(indexOne, indexTwo + 1);
+    }
 }
 
-var stringify = function (){
-	for (var arg = 0; arg < arguments.length; arg++ ){
-		return(arguments[arg]).join(" ~~~~> ");
-	}
+var stringify = function() {
+    for (var arg = 0; arg < arguments.length; arg++) {
+        return (arguments[arg]).join(" ~~~~> ");
+    }
 }
 
-var checkLines = function (origin, destination){
-	for (var j = 0; j < 3; j++){
-		foundMatch = trainLines[j].stations.includes(destination);
-		if (foundMatch){
-			var destinationLine = (trainLines[j]);
-		}
-		foundMatch = trainLines[j].stations.includes(origin);
-		if (foundMatch){
-			var originLine = (trainLines[j]);
-		}
-	}
-	if (originLine === destinationLine){
-		var originIndex = originLine.stations.indexOf(origin);
-		var destinationIndex = originLine.stations.indexOf(destination);
-		var route = makeRoute(originLine, originIndex, destinationIndex + 1);
-		
-		console.log("Origin: " + origin);
-		console.log("Destination: " + destination);
-		console.log(stringify(route));
-		console.log((route.length-1) + " stops total");
+var checkLines = function(origin, destination) {
+    for (var j = 0; j < 3; j++) {
+        foundMatch = trainLines[j].stations.includes(destination);
+        if (foundMatch) {
+            var destinationLine = (trainLines[j]);
+        }
+        foundMatch = trainLines[j].stations.includes(origin);
+        if (foundMatch) {
+            var originLine = (trainLines[j]);
+        }
+    }
+    if (originLine === destinationLine) {
+        var originIndex = originLine.stations.indexOf(origin);
+        var destinationIndex = originLine.stations.indexOf(destination);
+        var route = makeRoute(originLine, originIndex, destinationIndex);
 
-	} else {
-		var firstStationIndex = originLine.stations.indexOf(origin);
-		var secondStaionIndex = originLine.stations.indexOf("Richmond");
-		var initialRoute = makeRoute(originLine, firstStationIndex, secondStaionIndex);
-		var thirdStationIndex = destinationLine.stations.indexOf("Richmond");
-		var finalStationIndex = destinationLine.stations.indexOf(destination);
-		var finalRoute = makeRoute(destinationLine, thirdStationIndex, finalStationIndex);
-		
-		console.log("Origin: " + origin);
-		console.log("Destination: " + destination);
-		console.log(stringify(initialRoute.concat(finalRoute)));
-		console.log((initialRoute.length + finalRoute.length - 1) + " stops total");
-	}
+        console.log("Origin: " + origin);
+        console.log("Destination: " + destination);
+        console.log(stringify(route));
+        console.log((route.length - 1) + " stops total");
+
+    } else {
+        var firstStationIndex = originLine.stations.indexOf(origin);
+        var secondStaionIndex = originLine.stations.indexOf("Richmond");
+        var initialRoute = makeRoute(originLine, firstStationIndex, secondStaionIndex);
+        var thirdStationIndex = destinationLine.stations.indexOf("Richmond");
+        var finalStationIndex = destinationLine.stations.indexOf(destination);
+        var finalRoute = makeRoute(destinationLine, thirdStationIndex, finalStationIndex);
+        finalRoute.shift();
+
+        console.log("Origin: " + origin);
+        console.log("Destination: " + destination);
+        console.log(initialRoute);
+        console.log(finalRoute);
+        console.log(stringify(initialRoute.concat(finalRoute)));
+        console.log((initialRoute.length + finalRoute.length - 1) + " stops total");
+    }
 }
 
 
@@ -105,17 +116,14 @@ var checkLines = function (origin, destination){
 // 		var thirdStationIndex = destinationLine.stations.indexOf("Richmond");
 // 		var finalStationIndex = destinationLine.stations.indexOf(destination);
 // 		var finalRoute = destinationLine.stations.slice(thirdStationIndex, finalStationIndex + 1).join("---->");
-		
+
 // 		console.log("Origin: " + origin);
 // 		console.log("Destination: " + destination);
 
 // 		console.log(initialRoute + " CHANGE TRAIN" + finalRoute);
 // 	}
 
-	
+
 // }
 
 //attempt to refactor
-
-
-
