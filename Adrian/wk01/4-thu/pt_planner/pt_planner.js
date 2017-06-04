@@ -16,7 +16,7 @@ var glenWaverly = {
 var trainLines = [alamein, sandringham, glenWaverly];
 
 var makeRoute = function(lineIndex, indexOne, indexTwo) {
-    //checking
+   
     if (indexOne > indexTwo) {
         var temp = indexOne;
         indexOne = indexTwo;
@@ -28,6 +28,10 @@ var makeRoute = function(lineIndex, indexOne, indexTwo) {
     }
 }
 
+//stringify looks overly complicated because I had originally planned
+//for the function to take a variable number of arrays as an argument
+//and to iterate through them and create a final string.
+//this didn't work and I found an easier solution by using concat
 var stringify = function() {
     for (var arg = 0; arg < arguments.length; arg++) {
         return (arguments[arg]).join(" ~~~~> ");
@@ -66,64 +70,8 @@ var checkLines = function(origin, destination) {
 
         console.log("Origin: " + origin);
         console.log("Destination: " + destination);
-        console.log(initialRoute);
-        console.log(finalRoute);
+
         console.log(stringify(initialRoute.concat(finalRoute)));
         console.log((initialRoute.length + finalRoute.length - 1) + " stops total");
     }
 }
-
-
-
-
-
-// //function for basic journey and route
-// var basicJourney = function(origin, destination) {
-// 	var originIndex = trainLines[0].stations.indexOf(origin);
-// 	var destinationIndex = trainLines[0].stations.indexOf(destination);
-// 	var route = trainLines[0].stations.slice(originIndex, destinationIndex +1).join("---->");
-// 	console.log(route);
-// }
-// basicJourney("East Richmond", "Hawthorn");
-
-// //function to check for matches across trainLines
-// //need to set object
-
-// var checkLines = function (origin, destination){
-// 	for (var j = 0; j < 3; j++){
-// 		foundMatch = trainLines[j].stations.includes(destination);
-// 		if (foundMatch){
-// 			var destinationLine = (trainLines[j]);
-// 		}
-// 		foundMatch = trainLines[j].stations.includes(origin);
-// 		if (foundMatch){
-// 			var originLine = (trainLines[j]);
-// 		}
-// 	}
-// 	if (originLine === destinationLine){
-// 		var originIndex = originLine.stations.indexOf(origin);
-// 		var destinationIndex = originLine.stations.indexOf(destination);
-// 		var route = originLine.stations.slice(originIndex, destinationIndex +1).join("---->");
-// 		console.log(route);
-
-// 	} else
-// 	{
-// 		//create TWO routes and join them - might need to create more variables? 
-// 		//maybe create a function
-// 		var firstStationIndex = originLine.stations.indexOf(origin);
-// 		var secondStaionIndex = originLine.stations.indexOf("Richmond");
-// 		var initialRoute = originLine.stations.slice(firstStationIndex, secondStaionIndex).join("---->");
-// 		var thirdStationIndex = destinationLine.stations.indexOf("Richmond");
-// 		var finalStationIndex = destinationLine.stations.indexOf(destination);
-// 		var finalRoute = destinationLine.stations.slice(thirdStationIndex, finalStationIndex + 1).join("---->");
-
-// 		console.log("Origin: " + origin);
-// 		console.log("Destination: " + destination);
-
-// 		console.log(initialRoute + " CHANGE TRAIN" + finalRoute);
-// 	}
-
-
-// }
-
-//attempt to refactor
