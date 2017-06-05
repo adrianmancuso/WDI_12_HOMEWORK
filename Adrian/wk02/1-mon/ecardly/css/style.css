@@ -12,6 +12,7 @@ header img {
 body {
 	background-color: #d6d6d6;
 	font-family: sans-serif;
+
 }
 
 
@@ -44,6 +45,7 @@ nav {
 nav img {
 	border: 5px solid white;
 	display: block;
+	width: 90%;
 }
 
 ul {
@@ -72,4 +74,14 @@ p {
 	border-bottom: 2px solid black;
 	border-top: 1px dotted black;
 	padding: 10px;
+}
+
+footer {
+	width: 100%;
+	margin: 30px auto;
+	text-align: center;
+}
+
+footer img {
+	display: inline-block;
 }
