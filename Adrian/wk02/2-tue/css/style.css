@@ -53,7 +53,8 @@ main a, aside a {
 aside {
 	display: inline-block;
 	width: 30%;
-	vertical-align: 24em;
+	vertical-align: top;
+	border-top: 4em solid white;
 }
 
 span {
@@ -74,8 +75,9 @@ nav div {
 	color: white;
 	width: 15.96666%;
 	box-sizing: border-box;
-	font-size: 1em;
+	font-size: 0.8em;
 	text-align: center;
+	min-height: 2em;
 }
 
 header, nav {
