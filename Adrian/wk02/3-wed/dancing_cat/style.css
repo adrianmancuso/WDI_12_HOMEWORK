@@ -1,0 +1,38 @@
+* {
+	font-family: "Patrick Hand SC", cursive; 
+}
+
+h1 {
+	font-size: 3em;
+	display: inline;
+}
+
+h3 {
+	font-size: 2em;
+	display: inline;
+	color: grey;
+}
+
+button {
+	display: inline-block;
+	background-color: #81d4fa;
+	text-decoration: none;
+	color: white;
+	border: none;
+	width: 33%;
+	font-size: 2em;
+	padding-bottom: 10px;
+	transition-duration: 0.4s;
+}
+
+button:hover {
+	background-color: #cb9b8c;
+}
+
+header {
+	text-align: center;
+}
+
+body {
+	background-color: linen;
+}
