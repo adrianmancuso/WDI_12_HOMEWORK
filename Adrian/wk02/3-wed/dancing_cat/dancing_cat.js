@@ -17,6 +17,7 @@ var doubleSpeed = function() {
 }
 
 var flip = function() {
+	bear.style.transitionDuration = "0.8s";
 	i += 180;
 	bear.style.webkitTransform = "rotateY(" + i + "deg)";
 }
@@ -40,6 +41,8 @@ var bearWalk = function() {
 var moonWalk = function() {
 	var currentRevPos = parseInt(bear.style.left);
 	bear.style.left = (currentRevPos - movePixels) + 'px';
+
+	if (currentRevPos ===)
 
 	if (currentRevPos < 0) {
 		flip();

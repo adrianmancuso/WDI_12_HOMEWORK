@@ -1,0 +1,39 @@
+* {
+	font-family: 'Amiko', sans-serif;
+}
+
+header {
+	width: 100%;
+	border: 1px solid black;
+	position: relative;
+}
+
+img {
+	width: 20%;
+	display: inline-block;
+}
+
+h1 {
+	display: inline-block;
+	text-align: center;
+}
+
+header button {
+	display: inline-block;
+	width: 20%;
+	position: absolute;
+	right: 0;
+	border: none;
+	padding: 5em;
+	vertical-align: text-bottom;
+}
+
+div button {
+	width: 20%;
+	display: block;
+	background-color: #ff6f60;
+	padding: 2em 3em;
+	border: none;
+	font-size: 3em;
+	text-align: center;
+}
