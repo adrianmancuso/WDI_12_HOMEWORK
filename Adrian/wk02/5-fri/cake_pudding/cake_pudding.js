@@ -7,9 +7,15 @@ var wordList = ['basket', 'reject', 'library', 'depend', 'creator', 'juggle',
 'sister', 'clear']; 
 var playingField = document.querySelector('h1');
 var keyboardInput = document.querySelector('input');
+var newBtn = document.querySelector('#newGame');
+var newPlusBtn = document.querySelector('#newGamePlus');
+var guessesRemaining = document.querySelector('.counter');
 var emptyField = [];
-var playerGuess = null;
 var wordInPlay = null;
+var incorrectGuesses = [];
+var incorrectField = document.querySelector('h3');
+var incorrectGuessCount = 0;
+var maxGuesses = 12;
 
 var randomIndex = function () {
 	return Math.floor(Math.random() * wordList.length);
@@ -25,6 +31,8 @@ var randomWord = function () {
 var clearField = function() {
 	emptyField = [];
 	playingField.innerHTML = "";
+	incorrectGuessCount = 0;
+	incorrectField.innerHTML = "";
 }
 
 var createField = function () {
@@ -34,28 +42,57 @@ var createField = function () {
 	}
 	playingField.innerHTML = emptyField.join(' ');
 }
-//create userinput and store in variable 
+//return user input from keyboard and parse to checkGuess function
 keyboardInput.addEventListener('keydown', function(event){checkGuess(event.key);});
 
 
 
+//end game logic. called at the end of checkGuess
+var endGame = function () {
+	if (incorrectGuessCount > maxGuesses) {
+	clearField();
+	playingField.innerHTML = "GAME OVER";
+	} else if (!(emptyField.includes('_'))) {
+	clearField();
+	playingField.innerHTML = "YOU WIN";
+	}
+}
+
 var checkGuess = function (keyPressed) {
+	keyboardInput.innerHTML = "";
 	for (var i = 0; i < wordInPlay.length; i++){
 		if (wordInPlay[i] === keyPressed){
 			emptyField.splice(i, 1, wordInPlay[i]);
-			console.log(emptyField);
-		} else {
-			emptyField.push("_");
 		}
 	}
-	clearField();
+	playingField.innerHTML = "";
 	playingField.innerHTML = emptyField.join(' ');
-	// check against word in play array
-	// print to emptyField
-	//compare field state before and after full loop
+	//incorrect guesses
+	if (!wordInPlay.includes(keyPressed)) {
+			incorrectField.innerHTML += keyPressed;
+			incorrectGuessCount++;
+		}
+	endGame();
+	guessesRemaining.innerHTML = (maxGuesses - incorrectGuessCount + 1);
 }
 
-//check guess against array
+var newGame = function () {
+randomWord();
+createField();
+}
+
+//as per 90s squaresoft and konami games, makes game more difficult
+var newGamePlus = function () {
+	if (maxGuesses > 2) {
+		maxGuesses-= 2;
+	}
+	newGame ();
+}
+
+newBtn.addEventListener('click', newGame);
+newPlusBtn.addEventListener('click', newGamePlus);
+//initial game creation
+newGame();
 
 
 //CONDITIONAL: if found replace underscore with letter

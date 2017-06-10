@@ -7,6 +7,15 @@ html {
 body {
   margin: 0;
 }
+
+.counter {
+  display: inline-block;
+}
+
+.headParagraph {
+  display: inline;
+}
+
 article,
 aside,
 details,
@@ -55,7 +64,7 @@ dfn {
   font-style: normal;
 }
 h1 {
-  font-size: 18px;
+  font-size: 6em;
   margin: 0;
 }
 mark {
@@ -109,10 +118,11 @@ select,
 textarea {
   color: inherit;
   font: inherit;
-  margin: 0;
+  margin: 0 auto;
 }
 button {
   overflow: visible;
+  font-size: 0.8em;
 }
 button,
 select {
@@ -1077,7 +1087,7 @@ button,
 select,
 textarea {
   font-family: inherit;
-  font-size: inherit;
+  
   line-height: inherit;
 }
 a {
@@ -1201,15 +1211,21 @@ h3:after {
   content: "]";
 }
 h1 {
-  font-size: 18px;
+  font-size: 2em;
   text-transform: uppercase;
+  color: #aa00aa;
+  text-align: center;
+  margin-top: 10px;
 }
 h2 {
-  font-size: 18px;
+  margin-top: 0;
+  font-size: 2em;
   white-space: nowrap;
+  display: inline-block;
 }
 h3 {
-  font-size: 18px;
+  font-size: 2em;
+  display: inline-block;
 }
 h4 {
   font-size: 18px;
@@ -1238,10 +1254,31 @@ p {
 }
 .lead {
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 0.5em;
   font-weight: normal;
   line-height: 1;
+  border: 0.1em solid white;
+  padding: 1em;
+  width: 80%;
+  margin: 0 auto;
 }
+
+main {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #00aaaa;
+  border: 0.2em solid grey;
+  -webkit-box-shadow: 10px 10px 0 rgb(0,0,0);
+  box-shadow: 10px 10px 0 rgb(0,0,0);
+}
+
+.middle {
+  border: 0.1em solid white;
+  padding: 1.2em;
+  width: 70%;
+  margin: 0 auto;
+}
+
 @media (min-width: 768px) {
   .lead {
     font-size: 18px;
@@ -1412,6 +1449,7 @@ em:after {
 }
 strong {
   text-transform: uppercase;
+  background-color: black;
 }
 .list-unstyled {
   padding-left: 0;
@@ -2450,8 +2488,14 @@ input[type="checkbox"] {
   margin: 0 5px;
   line-height: 20px;
 }
+
+input {
+  margin: 1em;
+}
+
 input[type="text"]:before {
   content: "[";
+
 }
 input[type="text"]:after {
   content: "]";
@@ -2621,10 +2665,12 @@ fieldset[disabled] .checkbox label {
   padding-right: 0;
 }
 .input-sm {
-  height: 20px;
-  padding: 0 0;
+  height: 2em;
+  padding: 0 1em;
   font-size: 18px;
   line-height: 20px;
+  display: block;
+  margin: 2em auto;
 }
 select.input-sm {
   height: 20px;
@@ -2899,7 +2945,7 @@ select[multiple].form-group-lg .form-control {
   content: " >";
 }
 .btn {
-  display: inline-block;
+  display: block;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -2913,6 +2959,8 @@ select[multiple].form-group-lg .form-control {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  margin: 1em auto;
+  color: black;
 }
 .btn:focus,
 .btn:active:focus,
@@ -2932,6 +2980,7 @@ select[multiple].form-group-lg .form-control {
   color: #ffffff !important;
   background: #aa5500 !important;
   outline: 0;
+  transition-duration: 2000;
 }
 .btn.disabled,
 .btn[disabled],

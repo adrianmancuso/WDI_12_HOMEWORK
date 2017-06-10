@@ -2,18 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="./bootstrap/bootstrap/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 	<title>c_ke p_dding</title>
 </head>
 <body>
-	<h2>Player's guesses:</h2>
-	<h3></h3>
-	<div>
-		<h1>
+	<header class="page-header">
+		<h2>c_ke p_dding</h2> <p class="headParagraph">guess a letter. fail. repeat</p>
+		<div class="points">
 			
-		</h1>
-		<input type="text" placeholder="type here to start">
+		</div>
+	</header>
+	<div class="middle">
+		<h2>>>> incorrect guesses:</h2>
+		<h3></h3>
+		<h2>>>> guesses remaining: </h2><h2 class="counter"></h2>
+		<main>
+			<h1>
+				
+			</h1>
+			<p class="lead">>>>HOW TO PLAY<<<<br>
+			Type a key to make a guess. Incorrect guesses incur a point loss, lose all points and it's game over. Too easy? Try the <strong>New Game +</strong> mode.</p>
+			<input class="input-sm" type="text" placeholder="type here to start">
+			<button class="btn" id="newGame">New Game</button>
+			<button class="btn" id="newGamePlus">New Game +</button>
+
+		</main>
 	</div>
 	<script src="cake_pudding.js"></script>
 </body>
