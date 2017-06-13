@@ -1,3 +1,4 @@
+"use strict";
 var wordList = ['basket', 'reject', 'library', 'depend', 'creator', 'juggle', 
 'explode', 'hour', 'fowl', 'nervous', 'green', 'finger', 'wave', 'omniscient', 
 'boy', 'receive', 'pack', 'precious', 'public', 'jog', 'call', 'tongue', 
@@ -12,51 +13,51 @@ var newPlusBtn = document.querySelector('#newGamePlus');
 var guessesRemaining = document.querySelector('.counter');
 var emptyField = [];
 var wordInPlay = null;
-var incorrectGuesses = [];
 var incorrectField = document.querySelector('h3');
 var incorrectGuessCount = 0;
 var maxGuesses = 12;
 
 var randomIndex = function () {
 	return Math.floor(Math.random() * wordList.length);
-}
+};
 //chose a random word from array
 var randomWord = function () {
 	var num = randomIndex();
-	//turn string to array , create word length array of underscores
+	//turn string to array 
 	wordInPlay = wordList[num].toLowerCase().split('');
-}
+};
 
 
-var clearField = function() {
+var resetField = function() {
 	emptyField = [];
 	playingField.innerHTML = "";
 	incorrectGuessCount = 0;
 	incorrectField.innerHTML = "";
-}
+	keyboardInput.style.display='block';
+};
 
 var createField = function () {
-	clearField();
+	resetField();
 	for (var i = 0; i < wordInPlay.length; i++){
 		emptyField.push("_");	
 	}
 	playingField.innerHTML = emptyField.join(' ');
-}
-//return user input from keyboard and parse to checkGuess function
+};
+//return user input from keyboard and pass to checkGuess function
 keyboardInput.addEventListener('keydown', function(event){checkGuess(event.key);});
-
-
 
 //end game logic. called at the end of checkGuess
 var endGame = function () {
-	if (incorrectGuessCount > maxGuesses) {
-	clearField();
+	if (incorrectGuessCount >= maxGuesses) {
+	resetField();
 	playingField.innerHTML = "GAME OVER";
+	keyboardInput.style.display='none';
 	} else if (!(emptyField.includes('_'))) {
-	clearField();
+	resetField();
 	playingField.innerHTML = "YOU WIN";
+	keyboardInput.style.display='none';
 	}
-}
+};
 
 var checkGuess = function (keyPressed) {
 	keyboardInput.innerHTML = "";
@@ -73,13 +74,14 @@ var checkGuess = function (keyPressed) {
 			incorrectGuessCount++;
 		}
 	endGame();
-	guessesRemaining.innerHTML = (maxGuesses - incorrectGuessCount + 1);
-}
+	keyboardInput.value = "";
+	guessesRemaining.innerHTML = (maxGuesses - incorrectGuessCount);
+};
 
 var newGame = function () {
 randomWord();
 createField();
-}
+};
 
 //as per 90s squaresoft and konami games, makes game more difficult
 var newGamePlus = function () {
@@ -87,7 +89,7 @@ var newGamePlus = function () {
 		maxGuesses-= 2;
 	}
 	newGame ();
-}
+};
 
 newBtn.addEventListener('click', newGame);
 newPlusBtn.addEventListener('click', newGamePlus);
