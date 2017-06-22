@@ -23,15 +23,16 @@ transmogrifier(42, 13, 7)
 puts ""
 puts "Round 3"
 def toonify accent, sentence
-	if accent == 'daffy' 
+	case accent
+	when 'daffy'
 		puts "#{sentence.gsub(/s/, 'th')}"
-	elsif accent == 'elmer'
+	when 'elmer'
 		puts "#{sentence.gsub(/r/, 'w')}"
-	elsif accent == 'road runner'
+	when 'road runner'
 		puts "#{sentence.gsub(/./, 'Meep Meep! ')}"
 	else
 		puts "#{sentence}"
-	end 
+	end
 end
 
 toonify 'daffy', 'youre a dispicable sausage sizzler'
