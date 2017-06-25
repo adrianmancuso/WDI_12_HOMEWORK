@@ -34,18 +34,7 @@ end
 
 
 def visit_shelter
-	
 
-	# @client_menu = :show
-	# while :show
-	# 	puts "Which client would you like to select?"
-	# 	@current_client = @clients[gets.capitalize.chomp]
-	# binding.pry
-	# 	if @current_client == nil
-	# 		return
-	# 	end
-	# 		@client_menu = :close	
-	# end
 	def choose_client
 		puts "Here's a list of our clientele:"
 		puts "#{show_clients}"
@@ -64,26 +53,27 @@ def visit_shelter
 	choose_client
 	choose_animal
 
-	@current_client.adopt_animal(@current_animal)
+	#move animal object from shelter to owner's possession
+	@clients[@current_client.name].adopt_animal(@current_animal)
+	@animals.delete(@current_animal.name)
+	
 	puts "All done! #{@current_client.display_properties}"
-	binding.pry
 
-	# @animal_menu = :show
-	# while :show
-	# 	puts "#{show_animals}"
-	# 	puts "Which animal does #{@current_client} want to adopt?"
-	# 	@current_animal = @animals[gets.capitalize.chomp]
-	# end
 end
 
 def animal_abandonment
-	puts "This feature is not available yet :(
-	Plus, it's really mean and you're a monster."
+	puts "Return an animal? You're a monster! Which File should I pull up?"
+	puts "#{show_clients}"
+	@current_client = @clients[gets.capitalize.chomp]
+
+	puts "Which animal are you returning?"
+	puts "#{@current_client.pets.each {|name| name.to_s}}"
 end
+
 
 while main_program == "run"
 	
-	menu_options = [:client_maker, :animal_maker, :visit_shelter,:animal_abandonment, :quit]
+	menu_options = [:client_maker, :animal_maker, :visit_shelter, :animal_abandonment, :quit]
 	
 	puts "Please choose an option between 1-6:
 	1 - Create a client 

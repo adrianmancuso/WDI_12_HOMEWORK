@@ -12,7 +12,7 @@ class Animal
 	end
 
 	def name
-		puts "#{@name} the #{@species}"
+		@name
 	end
 
 	def get_age

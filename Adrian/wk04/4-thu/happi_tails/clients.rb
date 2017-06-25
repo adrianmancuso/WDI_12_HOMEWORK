@@ -9,7 +9,7 @@ class Client
 		@age = get_age
 		@name = supplied_name
 		@number_of_children = supplied_children
-		@pets = []
+		@pets = {}
 	end
 
 	def name
@@ -17,8 +17,7 @@ class Client
 	end
 
 	def pets
-		puts "#{@name}'s pets:"
-		@pets.each {|pet| pet.name}
+		@pets
 	end
 
 	def get_age
@@ -26,7 +25,8 @@ class Client
 	end
 
 	def adopt_animal(animal)
-		@pets.push(@animals.delete(animal))
+		binding.pry
+		@pets[animal.name] = @animals.delete(animal.name)
 	end
 
 	def display_properties
