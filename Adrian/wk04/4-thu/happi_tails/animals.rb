@@ -1,3 +1,4 @@
+
 require 'pry'
 
 class Animal
@@ -8,6 +9,10 @@ class Animal
 		@age = get_age
 		@gender = get_gender
 		@toys = []
+	end
+
+	def name
+		puts "#{@name} the #{@species}"
 	end
 
 	def get_age

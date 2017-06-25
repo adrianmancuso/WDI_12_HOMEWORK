@@ -22,8 +22,15 @@ pile_two = card_pack.slice!(0,3)
 @alfred_pocket = [].concat pile_one
 @peter_pocket = [].concat pile_two
 
+# card pack each slice 3 .to_a
+# could have kept all piles as one array with sub arrays
+
+#could have stored alfred and peter in a hash
+
 def arm_wrestle
 	chance_of_winning = rand
+# using ternary ops  rand > 0.5 ? 'hello' : 'non' // can use flatten
+
 	if chance_of_winning < 0.5
 		@alfred_pocket.concat @pile_three
 		@peter_pocket.push @pile_four

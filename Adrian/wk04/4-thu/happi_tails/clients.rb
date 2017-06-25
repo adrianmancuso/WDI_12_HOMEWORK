@@ -1,5 +1,6 @@
+
 require 'pry'
-# require_relative 'animals.rb'
+require_relative 'animal_shelter.rb'
 
 class Client
 
@@ -11,16 +12,30 @@ class Client
 		@pets = []
 	end
 
+	def name
+		@name
+	end
+
+	def pets
+		puts "#{@name}'s pets:"
+		@pets.each {|pet| pet.name}
+	end
+
 	def get_age
 		return rand(18..100)
 	end
 
 	def adopt_animal(animal)
-		pets.push(animal)
+		@pets.push(@animals.delete(animal))
 	end
 
-	def introduce
-		puts "meet #{@name}! Age: #{@age}, #{@number_of_children} children and #{@pets.length} pets"
+	def display_properties
+		puts "Client: #{@name}! 
+		Age: #{@age}
+		#{@number_of_children} children 
+		and 
+		#{@pets.length} pet(s):
+		#{@pets.each {|x, y, z| puts x}}"
 	end
 
 end
