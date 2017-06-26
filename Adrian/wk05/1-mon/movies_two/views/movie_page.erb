@@ -1,0 +1,8 @@
+<head>
+<h1><%= @movie %></h1>
+</head>
+<article>
+	<% @movie_details.each do |catagory, value| %>
+		<p><b><%= catagory %>:</b> <%= value %></p>
+	<% end %>
+</article>

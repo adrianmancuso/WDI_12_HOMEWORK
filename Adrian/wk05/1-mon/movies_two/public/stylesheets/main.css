@@ -1,0 +1,104 @@
+* {
+
+	font-family: sans-serif;
+	color: white;
+	word-wrap: all;
+	font-family: 'Lato', sans-serif;
+}
+
+html {	
+	background-color: #262626;
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+h1 {
+	color: #1485CC;
+	font-size: 5em;
+	text-align: center;
+	margin: 0 auto;
+}
+b {
+	background-color: inherit;
+	color: white;
+}
+p, h4 {
+	color: #B27288;
+	text-align: left;
+	background-color: inherit;
+}
+
+form {
+	margin: 3em auto;
+	text-align: center;
+}
+
+img {
+	width: 30%;
+}
+
+h3 {
+	text-align: center;
+}
+
+main {
+	width: 80%;
+	margin: 1em auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+label {
+	color: white;
+	font-size: 1.3em;
+}
+
+head {
+	margin: 0 auto;
+}
+
+div {
+	width: 30vh;
+	height: 30vh;
+	margin: 0.3em;
+	border: 0.07em solid white;
+	padding: 0.3em;
+	opacity: 1;
+}
+
+div:hover {
+	opacity: 0.5;
+	border: 0.2em solid #1485CC;
+}
+
+a {
+	text-align: center;
+	display: inline;
+	font-size: 1.2em;
+	text-decoration: none;
+
+}
+
+article {
+	width: 60%;
+	margin: 1em auto;
+	background-color: #4b4b4b;
+	border: 0.07em solid white;
+	padding: 1em;
+}
+
+button {
+	background-color: inherit;
+	border: 0.03em solid white;
+	width: 6vw;
+}
+
+input {
+	background-color: inherit;
+	color: white;
+	border: 0.03em solid white;
+	width: 6vw;
+}

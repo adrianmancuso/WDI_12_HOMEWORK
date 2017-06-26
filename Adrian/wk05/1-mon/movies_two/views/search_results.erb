@@ -1,0 +1,13 @@
+<head>
+<h1>Results for '<%= @search_string %>'</h1>
+</head>
+
+<main>
+	<% @returned_results.each do |result| %>
+		<div style="background-image: url(<%= result['Poster'] %>);">
+			<!-- <img src=" <%= result['Poster'] %> " alt="<%= result['Title'] %>"> -->
+			<h3><a href="/database/<%= result['Title'] %>" ><%= result['Title'] %></a></h3>
+			<p><%= result['Year'] %></p>
+		</div>
+	<% end %>	
+</main>

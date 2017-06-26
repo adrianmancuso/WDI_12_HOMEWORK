@@ -62,12 +62,14 @@ def visit_shelter
 end
 
 def animal_abandonment
-	puts "Return an animal? You're a monster! Which File should I pull up?"
+	puts "Return an animal? You're a monster! Which file should I pull up?"
 	puts "#{show_clients}"
 	@current_client = @clients[gets.capitalize.chomp]
 
 	puts "Which animal are you returning?"
 	puts "#{@current_client.pets.each {|name| name.to_s}}"
+
+	@current_animal = @current_client.pets.select
 end
 
 
