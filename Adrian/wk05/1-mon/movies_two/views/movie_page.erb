@@ -3,6 +3,9 @@
 </head>
 <article>
 	<% @movie_details.each do |catagory, value| %>
-		<p><b><%= catagory %>:</b> <%= value %></p>
+	<% if catagory == 'Title' || catagory == 'Year' || catagory == 'Plot' || catagory == 'Director' || catagory == 'imdbRating' || catagory == 'Actors' %>
+			<p><b><%= catagory %>:</b> <%= value %></p>
+
+		<% end %>
 	<% end %>
 </article>
