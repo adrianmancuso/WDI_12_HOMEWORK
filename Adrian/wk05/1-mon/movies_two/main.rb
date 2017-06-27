@@ -24,13 +24,14 @@ end
 
 get '/database/:title' do
 	@movie = params[:title]
-	check_db = run_sql("select * from movies where name = '#{@movie}';")
+	check_db = run_sql("select distinct * from movies where title = '#{@movie}';")
 		if check_db.count > 0
-			binding.pry
+			@movie_details = check_db[0]
+		else
+			@movie_details = get_title(@movie)
+			plot = @movie_details["Plot"].gsub("'", "")
+			run_sql("insert into movies (title, year, plot, director, poster) values ('#{@movie_details['Title']}', #{@movie_details['Year'].to_i}, '#{plot}', '#{@movie_details['Director']}', '#{@movie_details['Poster']}');")
 		end
-	@movie_details = get_title(@movie)
-	plot = @movie_details["Plot"].gsub("'", "")
-	run_sql("insert into movies (name, year, plot, director, image_url) values ('#{@movie_details['Title']}', #{@movie_details['Year'].to_i}, '#{plot}', '#{@movie_details['Director']}', '#{@movie_details['Poster']}');")
 	# binding.pry
 	erb :movie_page
 end

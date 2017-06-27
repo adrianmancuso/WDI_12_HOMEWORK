@@ -3,9 +3,11 @@
 </head>
 <article>
 	<% @movie_details.each do |catagory, value| %>
-	<% if catagory == 'Title' || catagory == 'Year' || catagory == 'Plot' || catagory == 'Director' || catagory == 'imdbRating' || catagory == 'Actors' %>
-			<p><b><%= catagory %>:</b> <%= value %></p>
+		<% case catagory.capitalize when 'Title','Year','Plot','Director','imdbRating','Actors'	%>
+			<p><b><%= catagory.capitalize %>:</b> <%= value %></p>
+<!-- 	<% if catagory.capitalize == 'Title' || catagory.capitalize == 'Year' || catagory.capitalize == 'Plot' || catagory.capitalize == 'Director' || catagory.capitalize == 'imdbRating' || catagory.capitalize == 'Actors' %> -->
 
+		<% end %>
 		<% end %>
 	<% end %>
 </article>
