@@ -29,10 +29,9 @@ get '/database/:title' do
 			@movie_details = check_db[0]
 		else
 			@movie_details = get_title(@movie)
-			plot = @movie_details["Plot"].gsub("'", "")
+			plot = @movie_details["Plot"].gsub("'", "''")
 			run_sql("insert into movies (title, year, plot, director, poster) values ('#{@movie_details['Title']}', #{@movie_details['Year'].to_i}, '#{plot}', '#{@movie_details['Director']}', '#{@movie_details['Poster']}');")
 		end
-	# binding.pry
 	erb :movie_page
 end
 
