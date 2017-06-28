@@ -18,7 +18,15 @@ end
 
 get '/search_results' do 
 	@search_string = params[:movie_search]
-	@returned_results = search(@search_string)
+	@returned_data = search(@search_string)
+	@returned_data.each do |result|
+		# check_db = run_sql("select distinct * from movies where title = '#{result['Title']}';")
+		# 	if check_db > 0
+				
+		# 	end
+		run_sql("insert into movies (title, year,  director, poster) values ('#{result['Title'].gsub("'", "''")}', #{result['Year'].to_i}, '#{result['Director']}', '#{result['Poster']}');")
+		end
+		@returned_results = @returned_data
 	erb :search_results
 end
 
@@ -30,7 +38,7 @@ get '/database/:title' do
 		else
 			@movie_details = get_title(@movie)
 			plot = @movie_details["Plot"].gsub("'", "''")
-			run_sql("insert into movies (title, year, plot, director, poster) values ('#{@movie_details['Title']}', #{@movie_details['Year'].to_i}, '#{plot}', '#{@movie_details['Director']}', '#{@movie_details['Poster']}');")
+			run_sql("insert into movies (title, year, plot, director, poster) values ('#{@movie_details['Title'].gsub("'", "''")}', #{@movie_details['Year'].to_i}, '#{plot}', '#{@movie_details['Director']}', '#{@movie_details['Poster']}');")
 		end
 	erb :movie_page
 end
