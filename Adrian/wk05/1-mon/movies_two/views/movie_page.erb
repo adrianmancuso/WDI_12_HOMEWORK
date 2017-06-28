@@ -1,13 +1,12 @@
-<head>
-<h1><%= @movie %></h1>
-</head>
+
+<h2><%= @movie %></h2>
+
 <article>
 	<% @movie_details.each do |catagory, value| %>
-		<% case catagory.capitalize when 'Title','Year','Plot','Director','imdbRating','Actors'	%>
+		<% case catagory.capitalize when 'Poster'	%>
+				<img src="<%= value %><" alt="">
+			<% when 'Title','Year','Plot','Director','imdbRating','Actors' %>
 			<p><b><%= catagory.capitalize %>:</b> <%= value %></p>
-<!-- 	<% if catagory.capitalize == 'Title' || catagory.capitalize == 'Year' || catagory.capitalize == 'Plot' || catagory.capitalize == 'Director' || catagory.capitalize == 'imdbRating' || catagory.capitalize == 'Actors' %> -->
-
+			<% end %>
 		<% end %>
-		<% end %>
-	<% end %>
 </article>
