@@ -24,7 +24,9 @@ get '/search_results' do
 		# 	if check_db > 0
 				
 		# 	end
-		run_sql("insert into movies (title, year,  director, poster) values ('#{result['Title'].gsub("'", "''")}', #{result['Year'].to_i}, '#{result['Director']}', '#{result['Poster']}');")
+		# binding.pry
+		# search does not return plot or director, removed. caused conflict with checkdb function
+		run_sql("insert into movies (title, year, poster) values ('#{result['Title'].gsub("'", "''")}', #{result['Year'].to_i}, '#{result['Poster']}');")
 		end
 		@returned_results = @returned_data
 	erb :search_results
