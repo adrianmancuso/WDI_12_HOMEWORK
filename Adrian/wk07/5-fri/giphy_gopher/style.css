@@ -1,0 +1,56 @@
+html {
+	background-color: #262626;
+	color: white;
+	width: 100vw;
+	position: relative;
+}
+
+aside{
+	width: 49%;
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 98vh;
+}
+
+aside input {
+	display: block;
+	margin: 1em auto;
+	background-color: grey;
+	border: none;
+	font-size: 2.5em;
+	line-height: 3em;
+	color: white;
+	width: 80%;
+}
+
+aside button {
+	display: block;
+	margin: 0.5em auto;
+	background-color: #262626;
+	line-height: 3em;
+	border: 0.05em solid white;
+	width: 20%;
+}
+
+main{
+	width: 49%;
+	position: absolute;
+	right: 0;
+}
+
+.gif {
+	display: block;
+	margin: 0.3em auto;
+	width: 80%;
+}
+
+h1 {
+	font-family: 'Fredoka One', cursive;
+	color: white;
+	font-size: 6em;
+	margin: 30vh auto 0 auto;
+	text-align: center;
+	word-wrap: all;
+}
