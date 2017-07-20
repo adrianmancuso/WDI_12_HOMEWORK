@@ -1,0 +1,14 @@
+$primary-color: #262626;
+
+.comments{
+	color: $primary-color;
+	opacity: 0.6;
+	width: 30%;
+	word-wrap: all;
+	border-radius: 5%;
+
+	p {
+		margin: 0 auto;
+		border-bottom: 1px solid black;
+	}
+}

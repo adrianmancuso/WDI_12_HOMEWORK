@@ -1,0 +1,15 @@
+<h2>Create a new article</h2>
+
+<%=  form_tag '/articles', method: 'post' do %>
+	<label for="">Title:</label>
+	<input type="text" name="title">
+
+	<label for="">Content:</label> 
+	<textarea name="content" id="" cols="30" rows="10"></textarea>
+
+	<label for="">Category</label>
+	<%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
+
+	<br>
+	<button>Create</button>
+<% end %>

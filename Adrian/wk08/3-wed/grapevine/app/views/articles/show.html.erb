@@ -1,0 +1,76 @@
+<a href="/articles/"><h1>Home</h1></a>
+<h1><%= @article.title %></h1>
+
+<div style="width: 500px">
+	<canvas id="chart" width="200" height="200"></canvas>
+</div>
+
+<form action="">
+	<button id="load-comments">Load Comments</button>
+</form>
+
+<div class="comments">
+
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+
+<script>
+
+var loadComments = function(event) {
+	event.preventDefault(); //because of form on show
+	$.ajax({
+		url:'/api/comments/<%= @article.id %>'
+	}).done(function(response){
+
+		var $commentsDiv = $('.comments');
+
+		response.forEach(function(comment){
+			
+			var $comment = $('<p>').html(comment.content)
+			$commentsDiv.append($comment);
+
+		});
+	});
+}
+
+$('#load-comments').on('click', loadComments)
+
+
+
+	
+	var ctx = document.getElementById("chart").getContext('2d');
+
+	$.ajax({
+		url: '/api/articles/<%= @article.id %>'
+	}).done(function(response){
+	
+		new Chart(ctx , {
+		    data: {
+		    	labels: _.keys(response.histogram),
+		    	datasets: [{
+		    		data: _.values(response.histogram)
+		    	}]
+		    },
+		    type: 'line',
+		    options: {
+		    	legend: {
+		    		display: false,
+		    		labels: {
+		    			position: "left",
+		    			fontColor: '#262626'
+		    		}
+		    	}
+		    }
+		});
+
+	});
+</script>
+
+
