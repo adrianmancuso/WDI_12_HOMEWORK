@@ -1,0 +1,34 @@
+<% @title = "Download RubyGems" %>
+<% @subtitle = subtitle %>
+
+<div class="l-colspan t-body">
+  <p>
+    RubyGems is a package management framework for Ruby. Download the latest version here:
+  </p>
+  <div id="formats" class="download__formats">
+    <%= link_to "tgz", "https://rubygems.org/rubygems/rubygems-#{version_number}.tgz", class: "download__format" %>
+    <%= link_to "zip", "https://rubygems.org/rubygems/rubygems-#{version_number}.zip", class: "download__format" %>
+    <%= link_to "gem", "https://rubygems.org/gems/rubygems-update-#{version_number}.gem", class: "download__format" %>
+    <%= link_to "git", "https://github.com/rubygems/rubygems", class: "download__format" %>
+  </div>
+  <p>
+  Or, to upgrade to the latest RubyGems:
+  </p>
+  <pre><code>$ gem update --system          # may need to be administrator or root</code></pre>
+  <p>
+  <strong>NOTE:</strong> RubyGems 1.1 and 1.2 have problems upgrading when there is no rubygems-update installed.  You will need to use the following instructions if you see <code>Nothing to update</code>. If you have an older version of RubyGems installed, then you can still do it in two steps:
+  </p>
+  <pre><code>$ gem install rubygems-update  # again, might need to be admin/root&#x000A;$ update_rubygems              # ... here too</code></pre>
+  <p>
+    If you don't have any RubyGems installed, there is still the pre-gem approach to getting software, doing it manually:
+  </p>
+  <ol class="manual">
+    <li><%=link_to "Download from above", "#formats" %></li>
+    <li>Unpack into a directory and <code>cd</code> there</li>
+    <li>Install with: <code>ruby setup.rb</code> (you may need admin/root privilege)</li>
+  </ol>
+  <p>
+  For more details and other options, see:
+  </p>
+  <pre><code>ruby setup.rb --help</code></pre>
+</div>

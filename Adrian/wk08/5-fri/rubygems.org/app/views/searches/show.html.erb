@@ -1,0 +1,43 @@
+<% @title = "search" %>
+
+<% if @error_msg %>
+  <div class="errorExplanation">
+    <p><%= @error_msg %></p>
+  </div>
+<% end %>
+<%= link_to t("advanced_search"), advanced_search_path, class: "t-link--gray t-link--has-arrow" %>
+<% if @gems %>
+  <% @subtitle = t('.subtitle', :query => content_tag(:em, h(params[:query]))) %>
+
+  <% if @exact_match %>
+    <header class="gems__header">
+      <p class="gems__meter"><%= t '.exact_match' %></p>
+    </header>
+    <% content_for :head do %>
+      <link rel="prerender prefetch" href="<%= rubygem_url(@exact_match) %>">
+    <% end %>
+    <%= render partial: 'rubygems/rubygem', object: @exact_match %>
+  <% end %>
+
+  <header class="gems__header push">
+    <p class="gems__meter"><%= page_entries_info(@gems, :entry_name => 'gem', :model => 'gem').html_safe %></p>
+  </header>
+
+  <%= render partial: 'aggregations', locals: { gems: @gems } %>
+
+  <% if suggestions = es_suggestions(@gems)  %>
+    <div class='search__suggestions'>
+      <p>
+        Maybe you mean
+        <%= suggestions.map do |term|
+          link_to term, search_path(params: { query: term }), only_path: true
+        end.to_sentence(last_word_connector: ' or ').html_safe %>?
+      </p>
+    </div>
+  <% end %>
+
+  <% if @gems.present? %>
+    <%= render partial: 'rubygems/rubygem', collection: @gems %>
+    <%= will_paginate @gems %>
+  <% end %>
+<% end %>

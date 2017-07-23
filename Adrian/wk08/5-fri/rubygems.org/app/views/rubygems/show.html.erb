@@ -1,0 +1,61 @@
+<% @title = @rubygem.name %>
+<% @subtitle = @latest_version.try(:slug) %>
+
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:atom, rubygem_versions_path(@rubygem, format: "atom"), {title: "#{@rubygem.name} Version Feed"}) %>
+  <% if @rubygem.versions.present? && @latest_version.indexed %>
+    <link rel="canonical" href="<%= rubygem_version_url(@rubygem, @latest_version.slug) %>" />
+  <% else %>
+    <meta name="robots" content="noindex" />
+  <% end %>
+<% end %>
+
+
+<div class="l-overflow">
+  <div class="l-colspan--l colspan--l--has-border">
+    <% if @latest_version.indexed %>
+      <div class="gem__intro">
+        <div id="markup" class="gem__desc">
+          <%= simple_markup(@latest_version.info) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="t-body">
+        <p><%=t '.yanked_notice' %></p>
+      </div>
+    <% end %>
+
+    <% if @versions.present? %>
+      <div class="l-half--l">
+        <div class="versions">
+          <h3 class="t-list__heading"><%= t '.versions_header' %>:</h3>
+          <ol class="gem__versions t-list__items">
+            <%= render @versions %>
+          </ol>
+          <% if show_all_versions_link?(@rubygem) %>
+            <%= link_to t('.show_all_versions', :count => @rubygem.versions.count), rubygem_versions_url(@rubygem), :class => "gem__see-all-versions t-link--gray t-link--has-arrow" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render :partial => "rubygems/dependencies", :locals => { :dependencies => @latest_version.dependencies.runtime, :dependencies_count => @latest_version.runtime_dependencies_count } %>
+    <%= render :partial => "rubygems/dependencies", :locals => { :dependencies => @latest_version.dependencies.development, :dependencies_count => @latest_version.development_dependencies_count } %>
+
+    <% if @latest_version.requirements.present? %>
+      <div class="l-half--l">
+        <h3 class="t-list__heading"><%= t '.requirements_header' %>:</h3>
+        <div class="t-list__items">
+          <% Array(@latest_version.requirements).each do |requirement| %>
+            <p><%= requirement %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render partial: "rubygems/gem_members", locals: { latest_version: @latest_version, rubygem: @rubygem } %>
+    <%= render partial: "rubygems/version_navigation", locals: { rubygem: @rubygem, latest_version: @latest_version } %>
+  </div>
+
+  <%= render "rubygems/aside" %>
+</div>
